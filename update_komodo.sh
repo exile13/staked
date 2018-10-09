@@ -31,16 +31,16 @@ buildkomodo () {
   if [ -z $1 ]; then
     return
   fi
-  cd $HOME/StakedModo
+  cd $HOME/staked/StakedModo
   git pull > /dev/null 2>&1
   git checkout $1  > /dev/null 2>&1
   git pull  > /dev/null 2>&1
   make clean > /dev/null 2>&1
   make -j$(nproc) > /dev/null 2>&1
-  if [[ ! -f $HOME/StakedModo/src/komodod ]]; then
+  if [[ ! -f $HOME/staked/StakedModo/src/komodod ]]; then
     return 0
   fi
-  if [[ ! -f $HOME/StakedModo/src/komodo-cli ]]; then
+  if [[ ! -f $HOME/staked/StakedModo/src/komodo-cli ]]; then
     return 0
   fi
   localrev=$(git rev-parse HEAD)
