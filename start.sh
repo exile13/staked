@@ -53,7 +53,7 @@ if [[ $result = "updated" ]]; then
   komodo-cli stop > /dev/null 2>&1
   daemon_stopped "komodod.*\-notary"
 elif [[ $result = "update_failed" ]]; then
-  echo "\033[1;31m [$chain] ABORTING!!! failed to update, Help Human! \033[0m"
+  echo -e "\033[1;31m [$chain] ABORTING!!! failed to update, Help Human! \033[0m"
   exit
 else
   echo "[$chain] No update required"
