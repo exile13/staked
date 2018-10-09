@@ -1,0 +1,13 @@
+#!/bin/bash
+cd $HOME/staked 
+if [[ -z $1 ]]; then
+  echo "asset-cli <ASSETCHAIN_NAME> commands"
+  exit
+fi
+
+branch=$(cat assetchains.json | jq -r --arg chain $1 '.[] | select (.ac_name == $chain) | .branch')
+if [[ $branch = "null" ]]; then
+  $HOME/staked/komodo/master/komodo-cli -ac_name="${@}"
+else
+  $HOME/staked/komodo/$branch/komodo-cli -ac_name="${@}"
+fi

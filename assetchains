@@ -1,0 +1,15 @@
+#!/bin/bash
+cd $HOME/staked 
+pubkey=$(./printkey.py pub)
+
+./listassetchainparams.py $1 | while read args; do
+  ac=$(echo $args | grep -o 'ac_name=[^ ,]\+')
+  ac=$(echo "${ac#*=}")
+  branch=$(cat assetchains.json | jq -r --arg chain $ac '.[] | select (.ac_name == $chain) | .branch')
+  if [[ $branch = "null" ]]; then
+    $HOME/staked/komodo/master/komodod $args -pubkey=$pubkey
+  else
+    $HOME/staked/komodo/$branch/komodod $args $overide_args -pubkey=$pubkey
+  fi
+  sleep 2
+done
