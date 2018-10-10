@@ -6,7 +6,7 @@ import sys
 ADDRESS = 'ADDRESS'
 CHAT = 'CHAT'
 config = configparser.ConfigParser()
-config.read('config_example.ini')
+config.read('config.ini')
 
 # read value to print from key
 try:

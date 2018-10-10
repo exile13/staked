@@ -19,5 +19,5 @@ if [[ $words != 1 ]]; then
   exit
 fi
 
-branch=$(cat assetchains.json | jq -r '.[] | select (.ac_name == STAKEDTROLL) | .branch')
-$HOME/staked/komodo/$branch/komodo-cli -ac_name=STAKEDTROLL kvupdate ${username} "$1" 1 ${password} 
+branch=$(cat assetchains.json | jq -r '.[] | select (.ac_name == "STAKEDTROLL") | .branch')
+$HOME/staked/komodo/$branch/komodo-cli -ac_name=STAKEDTROLL kvupdate ${username} "$1" 1 ${password}
