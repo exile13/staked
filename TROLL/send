@@ -4,7 +4,7 @@ username=$(./printkey.py username)
 password=$(./printkey.py password)
 
 if [[ -z $1 ]]; then
-  echo 'send <"message in quotes">'
+  echo 'send your message here'
   exit
 fi
 
@@ -20,4 +20,18 @@ if [[ $words != 1 ]]; then
 fi
 
 branch=$(cat assetchains.json | jq -r '.[] | select (.ac_name == "STAKEDTROLL") | .branch')
-$HOME/staked/komodo/$branch/komodo-cli -ac_name=STAKEDTROLL kvupdate ${username} "$1" 1 ${password}
+chain="$HOME/staked/komodo/$branch/komodo-cli -ac_name=STAKEDTROLL"
+balance=$(${chain} getbalance)
+havebalance=$(echo "$balance > 0.001" | bc)
+if [[ $havebalance = 0 ]]; then
+  echo -e "\033[1;31m [$1] ABORTING!!! You don't have enough balance to send a message. Do a ./getfunds with an new address first. \033[0m"
+  exit
+fi
+
+retjson=$(${chain} kvupdate ${username} "${@}" 1 ${password})
+sentmsg=$(echo $retjson | jq -r .value)
+if [[ $sentmsg != "null"  ]]; then
+  echo "[Sent]: $sentmsg"
+else
+  echo $return | jq
+fi
