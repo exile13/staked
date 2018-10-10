@@ -2,11 +2,18 @@
 cd ../
 username=$(./printkey.py username)
 password=$(./printkey.py password)
+ac="STAKEDTROLL"
+thisconf=$(<~/.komodo/$ac/$ac.conf)
+curluser=$(echo $thisconf | grep -Po "rpcuser=(\S*)" | sed 's/rpcuser=//')
+curlpass=$(echo $thisconf | grep -Po "rpcpassword=(\S*)" | sed 's/rpcpassword=//')
+curlport=$(echo $thisconf | grep -Po "rpcport=(\S*)" | sed 's/rpcport=//')
 
 if [[ -z $1 ]]; then
   echo 'send your message here'
   exit
 fi
+
+message="${@}"
 
 if [[ ${username} = "" ]]; then
   echo -e "\033[1;31m ABORTING!!! username invalid: Please check your config.ini \033[0m"
@@ -28,7 +35,10 @@ if [[ $havebalance = 0 ]]; then
   exit
 fi
 
-retjson=$(${chain} kvupdate ${username} \"${@}\" 1 ${password})
+#retjson=
+curl -s --user $curluser:$curlpass --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "kvupdate", "params": ["'$username'","'$message'","1","'$password'"] }' -H 'content-type: text/plain;' http://127.0.0.1:$curlport/
+
+exit
 sentmsg=$(echo $retjson | jq -r .value)
 if [[ $sentmsg != "null"  ]]; then
   echo "[Sent]: $sentmsg"
