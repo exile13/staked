@@ -61,4 +61,4 @@ fi
 
 echo "Starting $chain and importing: $Radd ..."
 ./assetchains $chain &
-./validateaddress $chain &
+./validateaddress.sh $chain

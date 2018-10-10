@@ -1,0 +1,23 @@
+#!/bin/bash
+cd ../
+username=$(./printkey.py username)
+password=$(./printkey.py password)
+
+if [[ -z $1 ]]; then
+  echo 'send <"message in quotes">'
+  exit
+fi
+
+if [[ ${username} = "" ]]; then
+  echo -e "\033[1;31m ABORTING!!! username invalid: Please check your config.ini \033[0m"
+  exit
+fi
+
+words=$(echo $password | wc -w )
+if [[ $words != 1 ]]; then
+  echo -e "\033[1;31m [$1] ABORTING!!! password invalid: Please check your config.ini \033[0m"
+  exit
+fi
+
+branch=$(cat assetchains.json | jq -r '.[] | select (.ac_name == STAKEDTROLL) | .branch')
+$HOME/staked/komodo/$branch/komodo-cli -ac_name=STAKEDTROLL kvupdate ${username} "$1" 1 ${password} 

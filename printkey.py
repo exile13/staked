@@ -3,20 +3,25 @@ import configparser
 import sys
 
 # read configuration file
-ENVIRON = 'PROD'
+ADDRESS = 'ADDRESS'
+CHAT = 'CHAT'
 config = configparser.ConfigParser()
-config.read('config.ini')
+config.read('config_example.ini')
 
-# read key to print form env var
+# read value to print from key
 try:
-    keytoprint = sys.argv[1]
+    valuetoprint = sys.argv[1]
 except:
     sys.exit(0)
 
 # print the key asked for
-if keytoprint == 'pub':
-    print(config[ENVIRON]['btcpubkey'])
-if keytoprint == 'wif':
-    print(config[ENVIRON]['wifkey'])
-if keytoprint == 'Radd':
-    print(config[ENVIRON]['Radd'])
+if valuetoprint == 'pub':
+    print(config[ADDRESS]['btcpubkey'])
+if valuetoprint == 'wif':
+    print(config[ADDRESS]['wifkey'])
+if valuetoprint == 'Radd':
+    print(config[ADDRESS]['Radd'])
+if valuetoprint == 'username':
+    print(config[CHAT]['username'])
+if valuetoprint == 'password':
+    print(config[CHAT]['password'])
