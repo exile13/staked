@@ -28,7 +28,7 @@ if [[ $havebalance = 0 ]]; then
   exit
 fi
 
-retjson=$(${chain} kvupdate ${username} "${@}" 1 ${password})
+retjson=$(${chain} kvupdate ${username} \"${@}\" 1 ${password})
 sentmsg=$(echo $retjson | jq -r .value)
 if [[ $sentmsg != "null"  ]]; then
   echo "[Sent]: $sentmsg"
