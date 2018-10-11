@@ -49,9 +49,8 @@ echo "[$chain] Checking for update and compiling if needed could take a while...
 result=$(./update_komodo.sh $chain)
 if [[ $result = "updated" ]]; then
   echo "[$chain] Updated to latest"
-  master_updated=1
-  komodo-cli stop > /dev/null 2>&1
-  daemon_stopped "komodod.*\-notary"
+  staked-cli -ac_name=$chain stop > /dev/null 2>&1
+  daemon_stopped "komodod.*\-ac_name=$chain"
 elif [[ $result = "update_failed" ]]; then
   echo -e "\033[1;31m [$chain] ABORTING!!! failed to update, Help Human! \033[0m"
   exit
@@ -61,4 +60,4 @@ fi
 
 echo "Starting $chain and importing: $Radd ..."
 ./assetchains $chain &
-./validateaddress.sh $chain
+./validateaddress.sh $chain &

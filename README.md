@@ -15,7 +15,7 @@ cd staked/install
 ## Using Staked
 To start a single chain we simply need to do `./start.sh <chain name>`
 
-For example to use the TROLL chain: `./start.sh STAKEDTROLL`
+For example to use the TROLL chain: `./start.sh STKDTROLL`
 
 Now if you did this, you will notice that it got very mad at you and didn't work printing something in RED.
 

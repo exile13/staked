@@ -1,8 +1,8 @@
 #!/bin/bash
 cd ../
-branch=$(cat assetchains.json | jq -r '.[] | select (.ac_name == "STAKEDTROLL") | .branch')
-chain="$HOME/staked/komodo/$branch/komodo-cli -ac_name=STAKEDTROLL"
-echo "[STAKEDTROLL] Claiming faucet, check chat box for progress ..."
+branch=$(cat assetchains.json | jq -r '.[] | select (.ac_name == "STKDTROLL") | .branch')
+chain="$HOME/staked/komodo/$branch/komodo-cli -ac_name=STKDTROLL"
+echo "[STKDTROLL] Claiming faucet, check chat box for progress ..."
 hex=$($chain faucetget | jq -r .hex) > /dev/null 2>&1
 outcome1=$(echo $?)
 $chain sendrawtransaction $hex > /dev/null 2>&1

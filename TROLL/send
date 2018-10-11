@@ -2,7 +2,7 @@
 cd ../
 username=$(./printkey.py username)
 password=$(./printkey.py password)
-ac="STAKEDTROLL"
+ac="STKDTROLL"
 thisconf=$(<~/.komodo/$ac/$ac.conf)
 curluser=$(echo $thisconf | grep -Po "rpcuser=(\S*)" | sed 's/rpcuser=//')
 curlpass=$(echo $thisconf | grep -Po "rpcpassword=(\S*)" | sed 's/rpcpassword=//')
@@ -26,8 +26,8 @@ if [[ $words != 1 ]]; then
   exit
 fi
 
-branch=$(cat assetchains.json | jq -r '.[] | select (.ac_name == "STAKEDTROLL") | .branch')
-chain="$HOME/staked/komodo/$branch/komodo-cli -ac_name=STAKEDTROLL"
+branch=$(cat assetchains.json | jq -r '.[] | select (.ac_name == "STKDTROLL") | .branch')
+chain="$HOME/staked/komodo/$branch/komodo-cli -ac_name=STKDTROLL"
 balance=$(${chain} getbalance)
 havebalance=$(echo "$balance > 0.001" | bc)
 if [[ $havebalance = 0 ]]; then

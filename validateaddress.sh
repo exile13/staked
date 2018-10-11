@@ -5,9 +5,9 @@ Radd=$(./printkey.py Radd)
 privkey=$(./printkey.py wif)
 
 if [[ $1 = "KMD" ]]; then
-  chain="komodo-cli"
+  chain="staked-cli"
 else
-  chain="komodo-cli -ac_name=$1"
+  chain="staked-cli -ac_name=$1"
 fi
 
 # Wait for the deamon to actually start
