@@ -3,6 +3,18 @@ pubkey=$(./printkey.py pub)
 Radd=$(./printkey.py Radd)
 privkey=$(./printkey.py wif)
 
+daemon_stopped () {
+  stopped=0
+  while [[ ${stopped} -eq 0 ]]; do
+    pgrep -af "$1" > /dev/null 2>&1
+    outcome=$(echo $?)
+    if [[ ${outcome} -ne 0 ]]; then
+      stopped=1
+    fi
+    sleep 2
+  done
+}
+
 if [ -z $1 ]; then
   echo -e "\033[1;31m ABORTING!!! Please specify a chain name \033[0m"
   exit
