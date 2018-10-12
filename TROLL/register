@@ -1,0 +1,3 @@
+#!/bin/bash
+hex=$(komodo-cli -ac_name=STAKEDB1 oraclesregister 742d2317a734fce4f6f99862dd878ed58538434dc855cd76879ad68be3f1bff4 1000000 | jq -r .hex)
+komodo-cli -ac_name=STAKEDB1 sendrawtransaction $hex

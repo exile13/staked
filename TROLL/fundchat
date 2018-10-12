@@ -1,0 +1,6 @@
+#!/bin/bash
+cd ../
+pubkey=$(./printkey.py  pub)
+for i in `seq 0 10`; do
+komodo-cli -ac_name=STAKEDB1 sendrawtransaction $(komodo-cli -ac_name=STAKEDB1 oraclessubscribe 742d2317a734fce4f6f99862dd878ed58538434dc855cd76879ad68be3f1bff4 $pubkey 1 | jq -r .hex)
+done

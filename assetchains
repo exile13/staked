@@ -1,5 +1,5 @@
 #!/bin/bash
-cd $HOME/staked 
+cd $HOME/staked
 pubkey=$(./printkey.py pub)
 
 ./listassetchainparams.py $1 | while read args; do
@@ -9,7 +9,7 @@ pubkey=$(./printkey.py pub)
   if [[ $branch = "null" ]]; then
     $HOME/staked/komodo/master/komodod $args -pubkey=$pubkey
   else
-    $HOME/staked/komodo/$branch/komodod $args $overide_args -pubkey=$pubkey
+    $HOME/staked/komodo/$branch/komodod $args -pubkey=$pubkey
   fi
   sleep 2
 done
