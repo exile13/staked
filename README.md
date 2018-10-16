@@ -2,7 +2,7 @@
 repo for using staked chains, for testing and production use
 
 ## Installing Staked
-I suggest a clean ubuntu 16.04/debian 9 VM, but this is NOT required. Everything will be stored in the $HOME/staked folder. Keep in mind the folling install script will symlink `komodo-cli` to the master branch of StakedChain/komodo in `/usr/local/bin`, however this is fully backwards compatible with komodo-cli used with the official komodo. It also symlink's `asset-cli` which is used to issue commands to staked chains. Keep this in mind, if you are not using a clean testing VM/VPS.
+I suggest a clean ubuntu 16.04/debian 9 VM, but this is NOT required. Everything will be stored in the $HOME/staked folder. 
 
 ```shell
 cd ~
