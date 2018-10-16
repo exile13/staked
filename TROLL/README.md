@@ -1,3 +1,6 @@
+# THIS IS OLD .. PLEASE AWAIT NEW INSTRUCTIONS FOR THE ORACLES BASED CHAT ROOM
+
+
 # STKDTROLL
 A decentralised chat that runs on the blockchain secured by dPoW to KMD and therefore secured by bitcoins hash rate. This is a specical type of blockchain developed just for this role, it uses a fork of komodo daemon to work that is NOT backwards compatible with any komodo assetchain or KMD itself. Dont worry though the `start.sh` script takes care of all this stuff for you. All you need to do is run `./start.sh STKDTROLL` from the directory above this one to start and sync the chain to start trolling people :P.
 
