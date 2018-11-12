@@ -83,7 +83,7 @@ fi
 if [[ $config == 1 ]]; then
   echo "Starting $chain and importing: $Radd ..."
   ./assetchains $chain "config" &
-  #./validateaddress.sh $chain &
+  ./validateaddress.sh $chain &
 elif [[ $config == 0 ]]; then
   ./assetchains $chain "noconfig" &
 fi

@@ -1,7 +1,7 @@
 #!/bin/bash
 cd $HOME/staked
 
-if [ -z $2 ] || [[ $2 == "1" ]]; then
+if [ -z $2 ] || [[ $2 != "noconfig" ]]; then
   pubkey=$(./printkey.py pub)
 fi
 
@@ -10,9 +10,9 @@ fi
   ac=$(echo "${ac#*=}")
   branch=$(cat assetchains.json | jq -r --arg chain $ac '.[] | select (.ac_name == $chain) | .branch')
   if [[ $branch = "null" ]]; then
-    echo "$HOME/staked/komodo/master/komodod $args -pubkey=$pubkey"
+    $HOME/staked/komodo/master/komodod $args -pubkey=$pubkey
   else
-    echo "$HOME/staked/komodo/$branch/komodod $args -pubkey=$pubkey"
+    $HOME/staked/komodo/$branch/komodod $args -pubkey=$pubkey
   fi
   sleep 2
 done
