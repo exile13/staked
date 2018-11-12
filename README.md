@@ -2,7 +2,7 @@
 repo for using staked chains, for testing and production use
 
 ## Installing Staked
-I suggest a clean ubuntu 16.04/debian 9 VM, but this is NOT required. Everything will be stored in the $HOME/staked folder. 
+I suggest a clean ubuntu 16.04/debian 9 VM, but this is NOT required. Everything will be stored in the $HOME/staked folder.
 
 ```shell
 cd ~
@@ -15,11 +15,11 @@ cd staked/install
 ## Using Staked
 To start a single chain we simply need to do `./start.sh <chain name>`
 
-For example to use the STAKEDB1 chain: `./start.sh STAKEDB1`
+For example to use the CFEKED chain: `./start.sh CFEKED`
 
 Now if you did this, you will notice that it got very mad at you and didn't work printing something in RED.
 
-This is because Crypto Conditions require us to start the komodo daemon with the -pubkey parameter. This is a bit of a chicken and egg problem as we need retreive the pubkey from a komodo daemon first. For now you will need another `komodo` installation somewhere else, or a known key. To get a new key the commands for `komdoo-cli` are as follows:
+This is because Crypto Conditions require us to start the komodo daemon with the -pubkey parameter. To get a new key the commands` are as follows:
 
 ```shell
 komodo-cli getnewaddress
@@ -46,12 +46,22 @@ You need the pubkey value *without* quotes `"` or the `,` third from the bottom.
 
 Now we need to take these values and input them to a config.ini file that staked uses to import the private key to each chain, and start the daemons with the correct -pubkey parameter.
 
+
+### Using config.ini
+
 To do this we need to do the following command: `cp config_example.ini config.ini`
 
 Open this in your fav text editor example: `nano config.ini`
 
 Enter the 3 keys you got in the order you retreived them above. For example the first value `Radd` takes the output of `getnewaddress`.
 
-Under [CHAT] you will also see `username` and `password` in the file. These are for the TROLLBOX, username is the name you wish to use. You can't know if someone else has used the name you choose until you try and use it, so put what you want and a password to protect that name. If you lose the password for the name you chose, you wont be able to use that name again. It is a bit like your private key to the TROLLBOX, which is why we store it in config.ini with your private key. Keep this file safe. You may want to take a backup of it, depending on what you will be using it for.
+You can now start the chain you want with `./start.sh <chain>` (or all chains with `./startall.sh`), using the config.ini, it will import the wif for you and start the daemon with -pubkey set. However yo uno longer need to do this if you follow the instructions below.
 
-To learn how to use the TROLLBOX see `README.md` inside the TROLL sub folder of this repo.
+
+### Starting a single chain or all chains without using config.ini
+
+To not use config.ini we can just issue the following command to start all chains: `./startall.sh noconfig`
+
+To start a single chain without config.ini: `./start.sh <chain> noconfig`
+
+To set your -pubkey in runtime use `./asset-cli <chain> setpubkey <pubkey>`

@@ -1,7 +1,0 @@
-#!/bin/bash
-cd ../
-pubkey=$(./printkey.py pub)
-username=$(./printkey.py username)
-password=$(./printkey.py password)
-
-komodo-cli -ac_name=STAKEDB1 kvupdate $pubkey $username 1000 $password

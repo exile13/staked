@@ -18,6 +18,9 @@ while [[ ${started} -eq 0 ]]; do
   outcome=$(echo $?)
   if [[ ${outcome} -eq 0 ]]; then
     started=1
+  elif [[ ${outcome} -eq 1 ]]; then
+    echo "not_started"
+    exit
   fi
 done
 

@@ -4,7 +4,6 @@ import sys
 
 # read configuration file
 ADDRESS = 'ADDRESS'
-CHAT = 'CHAT'
 config = configparser.ConfigParser()
 config.read('config.ini')
 
@@ -21,7 +20,3 @@ if valuetoprint == 'wif':
     print(config[ADDRESS]['wifkey'])
 if valuetoprint == 'Radd':
     print(config[ADDRESS]['Radd'])
-if valuetoprint == 'username':
-    print(config[CHAT]['username'])
-if valuetoprint == 'password':
-    print(config[CHAT]['password'])
