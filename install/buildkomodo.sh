@@ -14,3 +14,15 @@ mv src/komodod $HOME/staked/komodo/master
 mv src/komodo-cli $HOME/staked/komodo/master
 sudo ln -sf $HOME/staked/asset-cli /usr/local/bin/asset-cli
 sudo ln -sf $HOME/staked/komodo/master/komodo-cli /usr/local/bin/staked-cli
+cd ~
+mkdir .komodo
+cd .komodo
+touch komodo.conf
+rpcuser=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 24 | head -n 1)
+rpcpassword=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 24 | head -n 1)
+echo "rpcuser=$rpcuser" > komodo.conf
+echo "rpcpassword=$rpcpassword" >> komodo.conf
+echo "daemon=1" >> komodo.conf
+echo "server=1" >> komodo.conf
+echo "txindex=1" >> komodo.conf
+chmod 0600 komodo.conf
