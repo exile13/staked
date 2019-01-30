@@ -6,7 +6,7 @@ I suggest a clean ubuntu 16.04/debian 9 VM, but this is NOT required. Everything
 
 ```shell
 cd ~
-git clone https://github.com/StakedChain/staked.git
+git clone https://github.com/KMDLabs/staked.git
 cd staked/install
 ./buildkomodo.sh
 ```

@@ -7,7 +7,7 @@ elif [[ $1 == "noconfig" ]]; then
   config=0
 fi
 
-ac_json=$(curl https://raw.githubusercontent.com/StakedChain/StakedNotary/master/assetchains.json 2>/dev/null)
+ac_json=$(curl https://raw.githubusercontent.com/KMDLabs/StakedNotary/master/assetchains.json 2>/dev/null)
 echo $ac_json | jq .[] > /dev/null 2>&1
 outcome=$(echo $?)
 if [[ $outcome != 0 ]]; then

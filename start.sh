@@ -44,7 +44,7 @@ if [[ ${#privkey} != 52 ]] && [[ $config == 1 ]]; then
 fi
 
 if [[ $fetchac == 1 ]]; then
-  ac_json=$(curl https://raw.githubusercontent.com/StakedChain/StakedNotary/master/assetchains.json 2>/dev/null)
+  ac_json=$(curl https://raw.githubusercontent.com/KMDLabs/StakedNotary/master/assetchains.json 2>/dev/null)
   echo $ac_json | jq .[] > /dev/null 2>&1
   outcome=$(echo $?)
   if [[ $outcome != 0 ]]; then
